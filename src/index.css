@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+@layer utilities {
+  .country-name {
+    @apply text-3xl font-[700] dark:text-white text-very-dark-blue-text;
+  }
+  .info-title {
+    @apply dark:text-white capitalize text-base text-very-dark-blue-text font-bold;
+  }
+  .border-country {
+    @apply dark:text-white inline-block capitalize text-base cursor-pointer dark:hover:bg-very-dark-blue-background text-very-dark-blue-text shadow-lg dark:bg-dark-blue transition-colors duration-500 rounded-lg py-2 px-4 bg-white;
+  }
+  .info-value {
+    @apply inline-block font-normal;
+  }
+  .back-btn {
+    @apply text-lg cursor-pointer flex gap-2 dark:hover:bg-very-dark-blue-background  dark:bg-dark-blue shadow-lg transition-colors duration-500 dark:text-white py-4 px-6 rounded-lg items-center;
+  }
+}
