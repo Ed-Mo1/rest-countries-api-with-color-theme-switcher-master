@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
-import { CountriesDataContext } from "../context/CountriesData";
-
+import { useGetCountriesByRegionMutation } from "../app/services/countriesApiSlice";
 const DropDown = () => {
-  const { setFilter, regions } = useContext(CountriesDataContext);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [getCountriesByRegion] = useGetCountriesByRegionMutation();
+  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
   return (
     <div className="relative">
       <button
@@ -21,8 +21,8 @@ const DropDown = () => {
           {regions.map((region, i) => (
             <button
               onClick={() => {
-                setFilter(region);
                 setShowDropdown(false);
+                getCountriesByRegion(region);
               }}
               key={i}
               className={`bg-white ${i === 0 && "rounded-t-lg"} ${
