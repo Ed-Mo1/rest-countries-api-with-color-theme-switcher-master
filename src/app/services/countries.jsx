@@ -28,7 +28,15 @@ const countriesSlice = createSlice({
         countriesApi.endpoints.getCountriesByRegion.matchFulfilled,
         (state, action) => {
           state.countries = action.payload;
+          state.error = null;
           state.loading = false;
+        }
+      )
+      .addMatcher(
+        countriesApi.endpoints.getCountriesByRegion.matchPending,
+        (state) => {
+          state.error = null;
+          state.loading = true;
         }
       )
       .addMatcher(
@@ -37,9 +45,7 @@ const countriesSlice = createSlice({
           state.error = action.error.message;
           state.loading = false;
         }
-      );
-
-    builder
+      )
       .addMatcher(
         countriesApi.endpoints.getCountriesByName.matchFulfilled,
         (state, action) => {
@@ -56,7 +62,7 @@ const countriesSlice = createSlice({
       )
       .addMatcher(
         countriesApi.endpoints.getCountriesByName.matchRejected,
-        (state , action) => {
+        (state, action) => {
           state.error = action.error.message;
           state.loading = false;
           state.countries = [];

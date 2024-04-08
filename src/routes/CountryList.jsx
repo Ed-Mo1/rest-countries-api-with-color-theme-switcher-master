@@ -21,12 +21,11 @@ const CountryList = () => {
             No countries found
           </div>
         )}
-        {loading && (
+        {loading ? (
           <div className="text-center text-3xl text-white pt-20">
             Loading...
           </div>
-        )}
-        {countries && (
+        ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pt-16">
             {countries.map((country) => (
               <CountryCard key={country["flag"]} {...country} />

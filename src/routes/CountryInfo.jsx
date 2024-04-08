@@ -7,7 +7,7 @@ const CountryInfo = () => {
   const { data, isLoading } = useGetCountryByAlphaCodeQuery(code);
   const navigate = useNavigate();
   const country = data && data[0];
-  const [borderCountries, setBorderCountries] = useState([]);
+  const [borderCountries, setBorderCountries] = useState(null);
   useEffect(() => {
     const fetchBorderCountries = async () => {
       if (country && country.borders) {
@@ -131,7 +131,7 @@ const CountryInfo = () => {
                           {name}
                         </span>
                       ))
-                    : "No border countries"}
+                    : " No border countries"}
                 </h4>
               </div>
             </div>

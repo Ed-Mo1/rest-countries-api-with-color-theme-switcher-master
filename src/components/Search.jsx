@@ -4,9 +4,8 @@ import { useGetCountriesByNameMutation } from "../app/services/countriesApiSlice
 
 const Search = () => {
   const [getCountriesByName] = useGetCountriesByNameMutation();
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
-  // Load search value from local storage on component mount
   useEffect(() => {
     const storedValue = localStorage.getItem("searchValue");
     if (storedValue) {
@@ -17,10 +16,10 @@ const Search = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       const value = searchValue.trim().toLowerCase();
-      if (value) {
+      if (value.length > 0) {
         getCountriesByName(value);
       }
-    }, 0);
+    }, 10);
 
     return () => clearTimeout(timeoutId);
   }, [searchValue, getCountriesByName]);
@@ -28,7 +27,6 @@ const Search = () => {
   const handleSearch = (event) => {
     const { value } = event.target;
     setSearchValue(value);
-    // Store search value in local storage
     localStorage.setItem("searchValue", value);
   };
 
